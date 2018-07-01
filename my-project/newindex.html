@@ -1,0 +1,60 @@
+<!-- This jquery code actually works for changing the background, compare it with this other code to see what you got!  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Art Maker!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lab: Pixel Art Maker</h1>
+
+    <h2>Choose Grid Size</h2>
+    <form id="sizePicker">
+        Grid Height:
+        <input type="number" id="inputHeight" name="height" min="1" value="5">
+        Grid Width:
+        <input type="number" id="inputWeight" name="width" min="1" value="5">
+        <input type="submit" id="submit">
+    </form>
+
+    <h2>Pick A Color</h2>
+    <input type="color" id="colorPicker">
+
+    <p id="demo"></p>
+
+    <h2>Design Canvas</h2>
+    <table id="pixelCanvas"></table>
+
+    <script src="designs.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+       $(document).ready(function () {
+         var row, col, submit, color;
+            row = $('#inputWeight').val();
+            col = $('#inputHeight').val();
+
+            submit = $('#submit');
+            color = $('#colorPicker').val();
+
+            function makeGrid() {
+                 for (var x = 0; x < row; x++) {
+                    $('#pixelCanvas').append('<tr></tr>')
+                      for (var y = 0; y < col; y++) {
+                      $('#pixelCanvas').append('<td></td>');
+                      }
+                  }
+            }
+
+           makeGrid();
+            $('#demo').text(color);
+
+           $('td').click(function () {
+                $(this).css('background-color', color);
+
+            })
+       })
+    </script>
+</body>
+</html>
